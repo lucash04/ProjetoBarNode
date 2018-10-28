@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/lucash04/ProjetoBarNode/issues"
   },
-  "homepage": "https://github.com/lucash04/ProjetoBarNode#readme"
+  "homepage": "https://github.com/lucash04/ProjetoBarNode#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.3.7"
+  }
 }
