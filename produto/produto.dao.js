@@ -3,26 +3,27 @@ const db = require('../db/db');
 
 module.exports = {
 
-    consultar : (estabelecimento, categoria, callback) => {
+    listar : (idEstabelecimento, idCategoria, callback) => {
 
-        // consultar produtos do estabelecimento
-        // filtrar por categoria do produto, caso não informada categoria, listar todos
-        db.connect()
+        db.connect();
 
-        if(categoria == null){
-            Produto.find( (e, res) => {
-                db.disconnect()
-                callback(res)
-            })
-        }else{
-            let q = Produto.find({categoria : categoria})
-            q.sort("nome")
+        let paramsToFind = {};
 
-            q.exec( (e, res) => {
-                db.disconnect()
-                callback(res)
-            })
+        if(idEstabelecimento !== undefined){
+            paramsToFind.estabelecimento = idEstabelecimento;
         }
+
+        if(idCategoria !== undefined){
+            paramsToFind.categoria = idCategoria;
+        }
+
+        let q = Produto.find(paramsToFind);
+        q.sort("titulo");
+
+        q.exec( (e, res) => {
+            db.disconnect();
+            callback(res);
+        });
     }
 
 }

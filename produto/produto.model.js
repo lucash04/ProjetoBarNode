@@ -5,7 +5,7 @@ const Types = mongoose.Schema.Types;
 var schemaProduto = new Schema({
     titulo : String,
     descricao : String,
-    valor : String,
+    valor : Number,
     categoria : {
         type : Types.ObjectId,
         ref : 'ProdutoCategoria'

@@ -4,7 +4,6 @@ const Types = mongoose.Schema.Types;
 
 var schemaPedidoItem = new Schema({
     qtde : Number,
-    valor : Number,
     observacao : String,
     produto : {
         type : Types.ObjectId,

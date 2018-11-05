@@ -3,25 +3,17 @@ const db = require('../db/db');
 
 module.exports = {
 
-    consultar : (nome, callback) => {
+    listar : (nome, callback) => {
 
-        // Consultar estabelecimentos por nome, caso não informado nome listar todos
-        db.connect()
+        db.connect();
 
-        if(nome == null){
-            Estabelecimento.find( (e, res) => {
-                db.disconnect()
-                callback(res)
-            })
-        }else{
-            let q = Estabelecimento.find({nome : nome})
-            q.sort("nome")
+        let q = Estabelecimento.find({nome : new RegExp(nome, 'i') });
+        q.sort("nome");
 
-            q.exec( (e, res) => {
-                db.disconnect()
-                callback(res)
-            })
-        }
+        q.exec( (e, res) => {
+            db.disconnect();
+            callback(res);
+        });
     }
 
 }
